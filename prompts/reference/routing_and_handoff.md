@@ -60,7 +60,7 @@ Exit code 3, on stderr:
 
 ~~~text
 GATE FAIL: phase P for target 'T' -- N row(s) incomplete:
-  - [block] row '[key]' changed this session but [column] is blank
+  - Phase handoff row H-004: column 'status' is blank
   - finding file '[path]' was written or changed this session but has NO Finding Validation row
 ~~~
 
