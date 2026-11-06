@@ -1,0 +1,5 @@
+Example Shop Bounty rules
+No more than 60 requests per minute.
+Send the header X-Research-Id: tester-a.
+Automated tools are allowed if you stay under the rate limit.
+AI assistance is allowed.

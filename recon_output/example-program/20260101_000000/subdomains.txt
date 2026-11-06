@@ -1,0 +1,5 @@
+shop.example-shop.test
+www.example-shop.test
+api.example-shop.test
+payments.example-shop.test
+admin.other-company.test

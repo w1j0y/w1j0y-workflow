@@ -1,0 +1,9 @@
+GET /orders/102 HTTP/1.1
+Host: shop.example-shop.test
+X-Research: tester-a
+Cookie: session=[REDACTED]
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{"order_id": 102, "owner": "tester-b", "items": ["notebook"], "address": "[REDACTED]"}

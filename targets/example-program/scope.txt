@@ -1,0 +1,19 @@
+# Target: example-program
+# Platform: unknown
+# Source: targets/example-program/scope_raw.txt
+# Required header: X-Research: tester-a
+
+[in_scope_domains]
+shop.example-shop.test
+[in_scope_wildcards]
+*.example-shop.test
+[in_scope_urls]
+[in_scope_api_urls]
+[in_scope_ips]
+[in_scope_cidrs]
+[non_recon_in_scope]
+[out_of_scope]
+payments.example-shop.test
+Denial of service, social engineering and physical attacks
+Reports from automated scanners with no demonstrated impact
+[review_required]

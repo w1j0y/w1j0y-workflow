@@ -1,0 +1,12 @@
+{
+  "tool_name": "mcp__burp__get_proxy_http_history_regex",
+  "tool_input": {
+    "regex": "api/items/1\\d\\d",
+    "count": 10,
+    "offset": 0
+  },
+  "mcp_server": {
+    "name": "burp",
+    "source": "project"
+  }
+}

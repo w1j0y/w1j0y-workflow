@@ -1,0 +1,29 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "mcp__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/tools/mcp_scope_hook.py",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "deny": [
+      "mcp__burp__set_project_options",
+      "mcp__burp__set_user_options",
+      "mcp__burp__set_proxy_intercept_state",
+      "Read(./creds_*)",
+      "Read(./**/creds_*)",
+      "Read(./**/cookies_*)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./**/*.pem)"
+    ]
+  }
+}

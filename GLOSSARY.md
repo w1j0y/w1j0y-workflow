@@ -1,0 +1,109 @@
+# Glossary
+What: Every term the series uses, defined once in plain words.
+Who writes: The author of the series. In your copy, you.
+Who reads: You, whenever a word is new.
+Wired into: README.md, STRUCTURE.md
+
+Every term the series uses, defined once. Each entry: definition, then a real-life example.
+
+- **Agent:** A program where an AI model decides its own steps and which tools to use. Example: You ask why a test fails. It opens the files, runs the test, reads the output and chooses the next step itself.
+- **Allowlist:** The written list of the only hosts the agent may contact. Example: The guest list at the door.
+- **Approval:** A person's agreement to apply a written proposal. Example: The owner signs the work order.
+- **Audit:** A check that every file is wired and nothing exists unused, ending in proposals. Example: An annual inspection that writes a repair list.
+- **Authorization:** Written permission to test something. Example: A landlord's signed note that you may test the locks.
+- **Baseline:** A normal request and its normal response. Example: Weigh the empty bag.
+- **Blocked:** A request stopped before the application answered (firewall, login wall, timeout), which proves nothing about the weakness. Example: The room was locked, so you could not check it. That does not mean it is empty.
+- **Bug bounty program:** A company's written invitation to test certain sites and report what you find. Example: A shop publishes a page: test our site, here are the rules and where to report.
+- **Burp Suite:** A program that sits between browser and site and records each request. Example: A switchboard operator keeping a log of calls.
+- **Candidate:** Something odd and worth a closer look, but not yet a finding. Example: A smell of smoke: worth a look, not yet a fire.
+- **Claude Code:** The harness used in this series: a program that you run in a terminal. Example: You type claude in a folder and it reads that folder's files and runs commands for you.
+- **Clean scope:** A short file, written by you, that holds the program's rules in plain words with units. Example: The 40-page contract reduced to one page, with the speed written as 60 per minute.
+- **Clone:** Copy a project folder from the internet to your computer. Example: Copying this repo to your machine so you can read it.
+- **Coherent:** Every file agrees with the others and points at the right ones. Example: An address book where every card has the current number.
+- **Consult:** Opening a named file because a trigger says it applies. Example: Checking the manual when the light blinks red.
+- **Context:** The text the model is working from right now: your messages, the files it read and the tool results. Example: A colleague on a phone call knows only what has been said on this call.
+- **Context window:** The fixed amount of text the model can hold in view at one moment. Example: A desk of fixed size: put on too many pages and the oldest ones fall off.
+- **Control:** A request that should work, to prove the test can work at all. Example: Weigh a known 1 kg weight to prove the scale works.
+- **Dangling pointer:** A line in one file that names a file that no longer exists. Example: A contact card that still lists an old phone number.
+- **Decision record:** A written yes or no with the reasons. Example: Minutes of the panel.
+- **Delta:** The difference between the variant and the baseline, and the delta is the evidence. Example: The bag weighs 300 grams more than the empty bag.
+- **Digest:** Turning waiting summaries into entries appended to logs. Example: Sorting the day's mail into folders.
+- **Dry run:** Running a tool that shows what it would do and does nothing. Example: A rehearsal with no audience.
+- **Duplicate:** A report about something another person already reported. Example: Someone filed the same ticket first.
+- **Egress:** Data leaving your machine. Example: Mail leaving the building.
+- **Evidence reference:** A path that proves a claim and must exist on disk. Example: A footnote that actually leads to the source.
+- **Exit code:** The number a script hands back when it finishes, where zero means all clear. Example: A traffic light: zero is green, anything else is stop.
+- **Fail closed:** When unsure, the check refuses. Example: A door that locks when the power fails.
+- **False positive:** Something that looks like a bug and is not one. Example: A smoke alarm set off by toast.
+- **Finding:** A candidate that someone other than the tester agrees is real and worth reporting. Example: The smoke is confirmed by a second person as a real fire.
+- **Fixture:** A saved sample input used by a test. Example: A crash-test dummy.
+- **Four-line box:** The first thing in every file: What, Who writes, Who reads, Wired into. Example: The label on a moving box: what is in it, who packed it, who unpacks it, which room it goes to.
+- **Fresh context:** A conversation that starts with only what you hand it. Example: A new colleague who gets three files and nothing else.
+- **Fresh reader:** A reader who did not do the testing or write the report, so they cannot defend it. Example: A proofreader who did not write the essay.
+- **Gate:** A script that refuses to let the work continue until a condition is true. Example: A turnstile: no ticket, no passing.
+- **Generator prompt:** The short prompt that makes a new file from your own resource, using a template. Example: A recipe card plus "make this with my ingredients".
+- **Grounding:** Tying each claim to evidence a reader can check. Example: Every claim in a note comes with a path to the file that shows it.
+- **Grouped skip:** One ledger row that records the decision to skip a whole group of similar things, with the reason. Example: One line in the warehouse list: forty identical boxes, not opened, same template.
+- **Hallucination:** A confident answer that is wrong. Example: A colleague who never says I do not know, so an invented file name sounds as sure as a real one.
+- **Handoff:** The record one phase leaves for the next. Example: A shift-change note.
+- **Handoff gate:** The script that must pass before the next phase starts. Example: The inspector's sign-off before the next crew enters.
+- **Harness:** The program around the model that supplies tools and manages what the model can see, and Claude Code is one. Example: The shell around an engine: the model only produces text, the harness lets that text open files.
+- **Hook:** A script the harness runs before a tool call and that can block it. Example: A security guard at the door of one room.
+- **Identification header:** A label the program asks you to put on your requests. Example: A visitor badge.
+- **Impact:** What an attacker can do and what they gain, stated concretely. Example: Not "could be serious" but "tester-a can list tester-b's orders, including delivery addresses".
+- **Inbox:** The waiting room for summaries before the digest reads them. Example: The in-tray.
+- **Index:** A generated list of the files in a folder with one line each. Example: A library catalogue.
+- **Input type:** Where a user can put data: a path, a query field, a form field, a header or a cookie. Example: The doors into a building: front door, side door, loading bay.
+- **Intake:** The process of deciding whether a new tool is allowed in. Example: A hiring panel.
+- **Knowledge file:** A short document about one technique, in a fixed shape, that the agent reads when a row calls for it. Example: A recipe card: when to use it, the steps, the signs, the usual mistakes.
+- **Ledger:** The table of everything seen on a target, with status and evidence. Example: A warehouse inventory: one row per box, with a status.
+- **Lifecycle class:** Whether a file exists before the work, is created during it, or is updated during it. Example: A kitchen: the stove is there before you cook, the dishes you make appear while you cook, the shopping list is updated as you go.
+- **Log:** The running record of each idea tested. Example: A lab notebook written so a stranger can follow it.
+- **MCP:** A standard way for a program to offer tools to an agent. Example: A power socket shape that many plugs fit.
+- **Meta file:** A file for building other files, never read as content. Example: The mould, not the cake.
+- **Model:** The large language model: a program that reads text and writes text. Example: Paste an error message and get an explanation back. Nothing on your computer changes.
+- **Orchestrator:** The one conversation that starts each phase and checks the result, and does no phase work. Example: A site foreman.
+- **Phase:** One stage of the work, run in its own fresh conversation. Example: Map today, test tomorrow, each starting from files.
+- **Pipeline:** The whole work in order, from the program's rules to a report a human submits. Example: An assembly line drawn end to end after you have built each station.
+- **Practice app:** An intentionally vulnerable application that you run on your own computer. Example: A target you may test as hard as you like because you own it.
+- **Prompt:** The written instructions you give the model for one job. Example: Create README.md with these three sections.
+- **Prompt injection:** Text in a page or file that tries to give the agent orders. Example: A forged note slipped into the in-tray.
+- **Proposal:** A change written down first, applied only after a person agrees. Example: A work order.
+- **Proxy:** A program that sits between browser and site and passes along each request. Example: A switchboard operator keeping a log of calls.
+- **Proxy history:** The record a proxy keeps of every request and response that passed through it. Example: A switchboard operator keeping a log of calls.
+- **Rate limit:** The most requests a program allows in a unit of time. Example: A speed limit.
+- **Read back:** Confirming a change with a separate request that reads the state. Example: You press the lift button and the light comes on. That does not show the lift is coming.
+- **Recon:** Short for reconnaissance: listing what exists before testing anything. Example: Walking round a property and listing doors and windows before touching any lock.
+- **Redaction:** Removing secrets from text before saving it. Example: Blacking out a card number on a receipt.
+- **Rejected:** The application itself answered, and the answer shows the protection works. Example: The scale worked and the door really did refuse entry, so the lock held.
+- **Report:** The document the program reads: what is wrong, how to repeat it, what an attacker gains and the evidence. Example: The incident note the owner receives.
+- **Repository:** The folder that holds all the files of one project. Example: The my-agent folder, with every file you build.
+- **ROUTING line:** The last line of a phase report saying where to go next. Example: The arrow at the end of a signpost.
+- **Rules file:** A document the agent reads before it does anything, which here is AGENTS.md. Example: House rules pinned in the hall, read by everyone who comes in.
+- **Schema:** The written definition of what a file must contain. Example: The form's list of required fields.
+- **Scope:** The list of what a program lets you test, and everything else is off limits. Example: The list on the invitation: the shop site yes, the payment pages no.
+- **Script:** A short program that does one fixed thing the same way every time. Example: A calculator: the same input always gives the same answer.
+- **Session:** One run of the agent from start to finish. Example: Everything between typing claude and closing it.
+- **Session entry gate:** A script that refuses to start if the checkout is stale or the rules are unconfirmed. Example: A pre-flight checklist that locks the cockpit.
+- **Session prompt:** The short document every session starts from. Example: A pre-flight checklist: the same steps in the same order every time.
+- **Skill file:** A short curated file of what to do and avoid in one class of situation, with evidence. Example: A checklist card for one type of repair.
+- **Snapshot:** A saved copy of the ledger before a phase, to see what the phase changed. Example: A photo of the shelf before the stock check.
+- **Source:** The page, document or note that a statement in a knowledge file comes from. Example: The footnote on a recipe card that says where the method was taken from.
+- **Status:** Where a ledger row stands: untested, no-signal, blocked, needs-depth or candidate. Example: The colour of a tag on each box: not opened, empty, locked, half checked, odd.
+- **Stream:** An append-only log of one kind of lesson. Example: A ship's log.
+- **Subagent:** A fresh helper conversation started for one phase. Example: A contractor who gets a brief and a key.
+- **Subtraction first:** Try removing or not adding before adding. Example: A tidy toolbox: ask whether the tool is needed before buying it.
+- **Summarizing (compaction):** When a conversation nears the context window limit, the tool replaces it with a shorter summary and carries on from that, and details that were not requests or key snippets can be lost. Example: You give a colleague a 40-page brief and ask for one page. The one rule that mattered, never touch host X, is missing from the page.
+- **System map:** One picture of every file and how they point at each other. Example: A subway map.
+- **Template:** A finished example of one kind of file that you copy the shape from. Example: A blank invoice.
+- **Terminal:** A window where you type instructions to the computer. Example: The window where you type claude.
+- **Three lists:** Observed facts, guesses and next checks, kept apart. Example: It is raining is observed. It will rain tomorrow is a guess. Take an umbrella is a next check.
+- **Token:** A small piece of text the model counts, roughly a word or part of one. Example: A long word is cut into a few pieces. A 40-page brief is tens of thousands of them.
+- **Tool:** A small program the model can call. Example: A function that reads a file and hands back its text.
+- **Triager:** The person at a program who reads reports and decides what to do. Example: The editor who decides whether the story runs.
+- **Trigger table:** A table mapping what you saw to the file that applies. Example: A troubleshooting chart.
+- **Validation:** A check by a fresh reader that a candidate is real, or that a report holds up. Example: The proofreader reads the essay and writes down what does not hold.
+- **Variant:** The changed request that is actually being tested. Example: Weigh the bag again with the one thing changed.
+- **Verdict:** Ready, or needs more work; always written down. Example: A stamp on the page: READY or NEEDS MORE WORK.
+- **Wiring:** The lines that make one file point at another, so a change is felt where it matters. Example: A lamp with no plug in the socket. Nothing is broken and the room is dark.
+- **Write-back:** Writing the answer to a lookup into the matching knowledge file in the same session. Example: Correcting the recipe card the moment you find the mistake, not later.

@@ -1,0 +1,12 @@
+{
+  "hook_event_name": "PreToolUse",
+  "tool_name": "mcp__claude-in-chrome__javascript_tool",
+  "tool_input": {
+    "text": "1+1",
+    "tabId": 7
+  },
+  "mcp_server": {
+    "name": "claude-in-chrome",
+    "source": "user"
+  }
+}

@@ -1,0 +1,31 @@
+# Credentials and secrets
+creds_*
+cookies_*
+.env
+.env.*
+*.pem
+*.key
+
+# Evidence stays local, except the invented example
+evidence/
+!reports/example-program/**/evidence/
+
+# Runtime state written by the entry gate and the hook
+.state/
+
+# Waiting room for summaries (the digest reads it; keep it local)
+memory/_inbox/*
+!memory/_inbox/.gitkeep
+
+# Local tool configuration and settings
+.mcp.json
+.claude/settings.local.json
+
+# Local tool binaries and Python caches
+tools/bin/
+__pycache__/
+*.pyc
+
+# Scratch
+scratch/
+*.tmp

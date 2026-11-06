@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "targets": {
+    "example-program": {
+      "scope": "targets/example-program/scope_raw.txt",
+      "memory": "memory/targets/example-program/example-program.md",
+      "ledger": "recon_output/example-program/coverage_ledger.md",
+      "status": "example"
+    }
+  }
+}

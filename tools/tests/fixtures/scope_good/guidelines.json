@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.1",
+  "target_name": "Example Shop Bounty",
+  "platform": "example",
+  "source_file": "scope_good/scope_raw.txt",
+  "authorization": {
+    "only_listed_targets_authorized": true,
+    "safe_harbor_present": true,
+    "safe_harbor": "We will not pursue legal action against researchers who act in good faith and follow these rules.",
+    "disclosure": "Please keep reports private until we confirm the issue is fixed.",
+    "notes": []
+  },
+  "testing_rules": {
+    "automated_scanning": "Automated tools are allowed, but you must send no more than 60 requests per minute.",
+    "rate_limits": "No more than 60 requests per minute.",
+    "dos": "Denial of service, social engineering and physical attacks are out of scope.",
+    "credentials": "Use only test accounts that you created yourself.",
+    "third_party": "payments.example-shop.test is handled by the payment provider; do not test it.",
+    "support_or_live_chat": "Do not use live chat or support to discuss findings.",
+    "social_engineering": "Social engineering is out of scope.",
+    "data_handling": "Do not access data that belongs to other users.",
+    "required_headers": ["X-Research: tester-a"],
+    "other_restrictions": []
+  },
+  "disposition_types": [],
+  "focus_areas": [],
+  "out_of_scope_vulnerability_classes": ["Denial of service, social engineering and physical attacks", "Reports from automated scanners with no demonstrated impact"],
+  "known_duplicates": [],
+  "reward_tiers": [{"tier": "Typical range: $100 to $2,000"}],
+  "reward_or_priority_notes": ["Valid reports are rewarded based on impact."],
+  "special_cases": ["AI-assisted testing is allowed. Disclose it in your report."],
+  "researcher_conduct": ["Use only test accounts that you created yourself. Do not access data that belongs to other users."],
+  "submission_notes": [],
+  "absent_in_source": [],
+  "raw_important_quotes": ["Automated tools are allowed, but you must send no more than 60 requests per minute."]
+}

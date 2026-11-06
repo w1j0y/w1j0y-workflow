@@ -1,0 +1,37 @@
+Target Guidelines - example-program
+Source: targets/example-program/scope_raw.txt
+
+Required Header
+- X-Research: tester-a
+
+Authorization
+- We will not pursue legal action against researchers who act in good faith and follow these rules.
+- Please keep reports private until we confirm the issue is fixed.
+
+Do Not Test and Restrictions
+- Automated tools are allowed, but you must send no more than 60 requests per minute.
+- No more than 60 requests per minute.
+- Denial of service is out of scope.
+- Social engineering is out of scope.
+- payments.example-shop.test is handled by the payment provider; do not test it.
+- Do not use live chat or support to discuss findings.
+- AI-assisted testing is allowed. Disclose it in your report.
+
+Credentials
+- Use only test accounts that you created yourself. Do not access data that belongs to other users.
+
+Automation and Rate Limits
+- Automated tools are allowed, but you must send no more than 60 requests per minute.
+- No more than 60 requests per minute.
+
+Out-of-Scope Classes
+- Denial of service, social engineering and physical attacks
+- Reports from automated scanners with no demonstrated impact
+
+Special Cases
+- payments.example-shop.test (handled by our payment provider; do not test it)
+
+Important Notes
+- Valid reports are rewarded based on impact. Typical range: $100 to $2,000.
+- AI-assisted testing is allowed. Disclose it in your report.
+- Please keep reports private until we confirm the issue is fixed.

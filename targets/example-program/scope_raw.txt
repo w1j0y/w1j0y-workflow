@@ -1,0 +1,28 @@
+Example Shop Bounty
+
+Welcome to the Example Shop Bounty program. This page is the program policy. It is an invented example for this repository.
+
+Rewards
+Valid reports are rewarded based on impact. Typical range: $100 to $2,000.
+
+In scope
+- *.example-shop.test
+- shop.example-shop.test
+
+Out of scope
+- payments.example-shop.test (handled by our payment provider; do not test it)
+- Denial of service, social engineering and physical attacks
+- Reports from automated scanners with no demonstrated impact
+
+Testing rules
+- Automated tools are allowed, but you must send no more than 60 requests per minute.
+- Add the header X-Research: tester-a to every request so we can identify your traffic.
+- AI-assisted testing is allowed. Disclose it in your report.
+- Use only test accounts that you created yourself. Do not access data that belongs to other users.
+- Do not use live chat or support to discuss findings.
+
+Safe harbor
+We will not pursue legal action against researchers who act in good faith and follow these rules.
+
+Disclosure
+Please keep reports private until we confirm the issue is fixed.

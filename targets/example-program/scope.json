@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.1",
+  "target_name": "example-program",
+  "platform": "unknown",
+  "source_file": "targets/example-program/scope_raw.txt",
+  "required_header": {"name": "X-Research", "value": "tester-a", "source_text": "Add the header X-Research: tester-a to every request so we can identify your traffic."},
+  "recon_targets": {"domains": ["shop.example-shop.test"], "wildcards": ["*.example-shop.test"], "urls": [], "api_urls": [], "ips": [], "cidrs": []},
+  "non_recon_in_scope": {"mobile_apps": [], "store_urls": [], "source_repositories": [], "saas_configuration": [], "content_authorization": [], "other": []},
+  "out_of_scope": {"domains": ["payments.example-shop.test"], "wildcards": [], "urls": [], "api_urls": [], "ips": [], "cidrs": [], "mobile_apps": [], "other": ["Denial of service, social engineering and physical attacks", "Reports from automated scanners with no demonstrated impact"]},
+  "review_required": [],
+  "non_asset_references": [],
+  "notes": ["payments.example-shop.test is excluded and falls under the in-scope wildcard *.example-shop.test; the narrower exclusion wins, so keep both entries.", "The wildcard *.example-shop.test does not cover the bare domain example-shop.test, which is not listed."],
+  "absent_in_source": [],
+  "rules": {
+    "automation": {"status": "limited", "source_text": "Automated tools are allowed, but you must send no more than 60 requests per minute."},
+    "ai_use": {"status": "disclosure_required", "source_text": "AI-assisted testing is allowed. Disclose it in your report."},
+    "rate_limit": {"value": 60, "unit": "per_minute", "source_text": "no more than 60 requests per minute"},
+    "identification_header": {"name": "X-Research", "value": "tester-a", "source_text": "Add the header X-Research: tester-a to every request so we can identify your traffic."},
+    "confirmed_by_human": false
+  }
+}

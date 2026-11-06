@@ -1,0 +1,10 @@
+{
+  "tool_name": "mcp__burp__set_proxy_intercept_state",
+  "tool_input": {
+    "intercepting": true
+  },
+  "mcp_server": {
+    "name": "burp",
+    "source": "project"
+  }
+}

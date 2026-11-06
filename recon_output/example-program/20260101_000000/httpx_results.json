@@ -1,0 +1,7 @@
+[
+  {"url": "https://shop.example-shop.test", "status_code": 200, "title": "Example Shop", "tech": ["react"]},
+  {"url": "https://www.example-shop.test", "status_code": 301, "final_url": "https://shop.example-shop.test/"},
+  {"url": "https://api.example-shop.test", "status_code": 401, "title": ""},
+  {"url": "https://payments.example-shop.test", "status_code": 200, "title": "Pay"},
+  {"url": "https://admin.example-shop.test", "status_code": 302, "final_url": "https://login.other-company.test/"}
+]

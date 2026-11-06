@@ -1,0 +1,11 @@
+{
+  "tool_name": "mcp__burp__get_proxy_http_history_regex",
+  "tool_input": {
+    "regex": ".*",
+    "count": 10
+  },
+  "mcp_server": {
+    "name": "burp",
+    "source": "project"
+  }
+}

@@ -1,0 +1,5 @@
+https://shop.example-shop.test/orders/101
+https://shop.example-shop.test/api/profile
+https://www.example-shop.test/about
+https://payments.example-shop.test/checkout
+https://evil.test/redirect?to=shop.example-shop.test

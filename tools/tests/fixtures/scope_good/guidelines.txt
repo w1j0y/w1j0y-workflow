@@ -1,0 +1,32 @@
+# Guidelines: Example Shop Bounty
+
+Source: scope_good/scope_raw.txt
+Required header: X-Research: tester-a
+
+## Authorization
+We will not pursue legal action against researchers who act in good faith and follow these rules.
+Please keep reports private until we confirm the issue is fixed.
+
+## Testing rules
+Automated tools are allowed, but you must send no more than 60 requests per minute.
+No more than 60 requests per minute.
+Denial of service, social engineering and physical attacks are out of scope.
+Use only test accounts that you created yourself.
+payments.example-shop.test is handled by the payment provider; do not test it.
+Do not use live chat or support to discuss findings.
+Social engineering is out of scope.
+Do not access data that belongs to other users.
+
+## Out of scope classes
+Denial of service, social engineering and physical attacks
+Reports from automated scanners with no demonstrated impact
+
+## Rewards
+Typical range: $100 to $2,000
+Valid reports are rewarded based on impact.
+
+## Special cases
+AI-assisted testing is allowed. Disclose it in your report.
+
+## Conduct
+Use only test accounts that you created yourself. Do not access data that belongs to other users.

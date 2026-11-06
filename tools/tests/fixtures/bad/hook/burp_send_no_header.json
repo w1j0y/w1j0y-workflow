@@ -1,0 +1,14 @@
+{
+  "hook_event_name": "PreToolUse",
+  "tool_name": "mcp__burp__send_http1_request",
+  "tool_input": {
+    "content": "GET /api/items/101 HTTP/1.1\r\nHost: shop.example-shop.test\r\n\r\n",
+    "targetHostname": "shop.example-shop.test",
+    "targetPort": 443,
+    "usesHttps": true
+  },
+  "mcp_server": {
+    "name": "burp",
+    "source": "project"
+  }
+}

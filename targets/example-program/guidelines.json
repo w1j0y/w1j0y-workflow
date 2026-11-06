@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.1",
+  "target_name": "example-program",
+  "platform": "unknown",
+  "source_file": "targets/example-program/scope_raw.txt",
+  "authorization": {"only_listed_targets_authorized": true, "safe_harbor_present": true, "safe_harbor": "We will not pursue legal action against researchers who act in good faith and follow these rules.", "disclosure": "Please keep reports private until we confirm the issue is fixed.", "notes": []},
+  "testing_rules": {
+    "required_headers": ["X-Research: tester-a"],
+    "automated_scanning": "Automated tools are allowed, but you must send no more than 60 requests per minute.",
+    "rate_limits": "No more than 60 requests per minute.",
+    "dos": "Denial of service is out of scope.",
+    "credentials": "Use only test accounts that you created yourself. Do not access data that belongs to other users.",
+    "third_party": "payments.example-shop.test is handled by the payment provider; do not test it.",
+    "support_or_live_chat": "Do not use live chat or support to discuss findings.",
+    "social_engineering": "Social engineering is out of scope.",
+    "data_handling": "Do not access data that belongs to other users.",
+    "other_restrictions": ["AI-assisted testing is allowed. Disclose it in your report."]
+  },
+  "disposition_types": [],
+  "focus_areas": [],
+  "out_of_scope_vulnerability_classes": ["Denial of service, social engineering and physical attacks", "Reports from automated scanners with no demonstrated impact"],
+  "known_duplicates": [],
+  "reward_tiers": [],
+  "reward_or_priority_notes": ["Valid reports are rewarded based on impact. Typical range: $100 to $2,000."],
+  "special_cases": ["payments.example-shop.test (handled by our payment provider; do not test it)"],
+  "researcher_conduct": [],
+  "submission_notes": ["AI-assisted testing is allowed. Disclose it in your report.", "Please keep reports private until we confirm the issue is fixed."],
+  "absent_in_source": ["disposition_types", "known_duplicates", "reward_tiers", "focus_areas", "researcher_conduct"],
+  "raw_important_quotes": ["Automated tools are allowed, but you must send no more than 60 requests per minute.", "Add the header X-Research: tester-a to every request so we can identify your traffic.", "AI-assisted testing is allowed. Disclose it in your report.", "Use only test accounts that you created yourself. Do not access data that belongs to other users.", "Do not use live chat or support to discuss findings.", "We will not pursue legal action against researchers who act in good faith and follow these rules.", "Please keep reports private until we confirm the issue is fixed."]
+}
