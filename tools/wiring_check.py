@@ -17,6 +17,7 @@ Checks (each finding has a check name):
   tool-missing  a tool script path under tools (py or sh) named in a file does not exist
   tool-unnamed  a tools/*.py or tools/*.sh is named nowhere (outside tests)
   structure     a file has no STRUCTURE.md row with class B, C or U, or a row names a missing path
+                (files of a real target folder, such as targets/my-program/, need no row: the example-program rows show their shape)
   meta-leak     a non-meta file refers to a meta file as content
 Skipped everywhere: tools/tests/fixtures, __init__.py, .gitkeep, __pycache__, .git, .state.
 Files under tools/tests are exempt from the backticked-path, unreferenced and STRUCTURE.md checks.
@@ -123,6 +124,18 @@ def wired_entries(box_value):
         tok = e.split()[0].strip("`")
         out.append((tok, "(one-way" in e.lower()))
     return out
+
+
+TARGET_DATA = ("targets/", "recon_output/", "reports/", "non-reportable/", "memory/targets/")
+
+
+def other_target_data(path):
+    """True for a file inside any target folder except the invented example one."""
+    for pre in TARGET_DATA:
+        if path.startswith(pre):
+            first = path[len(pre):].split("/", 1)[0]
+            return first not in ("", "example-program") and "/" in path[len(pre):]
+    return False
 
 
 def structure_rows(text):
@@ -253,6 +266,8 @@ def run(root):
         for f in content:
             if tests(f) or runtime_path(f) or f == ".mcp.json":
                 continue
+            if other_target_data(f):
+                continue  # a real target's files are runtime data; the example-program rows show their shape
             covered = f in rowmap or any(p.endswith("/") and f.startswith(p) and rowmap[p] for p in rowmap)
             if not covered:
                 add("structure", f, "no row with class B, C or U in STRUCTURE.md")

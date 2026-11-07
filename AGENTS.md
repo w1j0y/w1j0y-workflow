@@ -101,7 +101,7 @@ Why: the ledger is the memory of the work; a gate can only check what is written
 ## 14. Phases, subagents and routing
 
 1. The orchestrator (`prompts/web/WEB_LOOP.md`) does no phase work. It starts one fresh subagent per phase, reads only that subagent's last line (`ROUTING: ...`) and runs the gate.
-2. A subagent receives: the seed preamble (the Core rules in section 2, byte for byte), five parameter lines (Target, Target-memory path, Target-scope path, Phase, Run ID) and the path of its phase file. Nothing else crosses between contexts except files on disk.
+2. A subagent receives: the seed preamble (the same text for every phase, byte for byte, which tells it to read the Core rules in section 2 and obey them), five parameter lines (Target, Target-memory path, Target-scope path, Phase, Run ID) and the path of its phase file. Nothing else crosses between contexts except files on disk.
 3. The gate wins over a self-reported routing line. If the gate fails, the orchestrator dispatches a repair for the listed rows; it never advances on a fail.
 4. Resume at the lowest phase named by an open handoff row, or at 02 if there is none. A target that has a ledger skips 01.
 The detail is in `prompts/reference/routing_and_handoff.md`.

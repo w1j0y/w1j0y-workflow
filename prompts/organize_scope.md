@@ -136,6 +136,10 @@ Human-readable, rendered from `guidelines.json`. Start with `Target Guidelines -
 
 ~~~markdown
 # [target_name] Target Scope
+What: Generated summary of the organized scope for [target_name].
+Who writes: scripts/organize_scope_claude.sh through its agent.
+Who reads: You, before running tools/recon.py.
+Wired into: [raw filename] (one-way: input), tools/validate_scope.py (one-way: validator)
 
 ## Files
 

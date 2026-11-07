@@ -21,7 +21,7 @@ Always open `knowledge/INDEX.md` (never the knowledge folder) and open at most t
 
 ## Trigger table
 
-Match the evidence you have against this table. Open the knowledge file on the same row, and no others unless the index line for another file also matches. The wiring check reads this table; keep one row per knowledge file path and keep the paths exact.
+Match the evidence you have against this table. Open the knowledge file on the same row, and no others unless the index line for another file also matches. The wiring check reads this table; keep every path exact; a file may appear on more than one row.
 
 | Evidence | Knowledge file |
 |---|---|

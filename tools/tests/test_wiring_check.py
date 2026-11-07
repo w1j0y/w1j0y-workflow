@@ -119,6 +119,17 @@ class WiringTests(unittest.TestCase):
                 self.assertEqual(r.returncode, 1)
                 self.assertIn("WIRING FAIL", r.stdout)
 
+    def test_a_real_targets_files_need_no_structure_row(self):
+        box = "What: x\nWho writes: y\nWho reads: z\nWired into: none: test\n"
+        self.w("targets/my-program/notes.md", "# Notes\n" + box)
+        self.w("recon_output/my-program/target_notes.md", "# Notes\n" + box)
+        code, data, found = checks(self.root)
+        self.assertNotIn("structure", found, data)
+        # the shape rows still apply to everything outside a target folder
+        self.w("docs/loose.md", "# Loose\n" + box)
+        code, data, found = checks(self.root)
+        self.assertIn("structure", found, data)
+
     def test_one_way_marker_and_none_are_accepted(self):
         self.sub("tools/a.py", "# Wired into: prompts/web/WEB_LOOP.md", "# Wired into: README.md (one-way: front door only)")
         code, data, found = checks(self.root)
