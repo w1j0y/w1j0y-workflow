@@ -1,6 +1,7 @@
 Invented example, secrets already redacted. Four requests, sent with the header X-Research: tester-a at well below 60 requests per minute.
 
 1. BASELINE (tester-a reads tester-a's own order 101)
+Session used: tester-a (cookie redacted)
 GET /orders/101 HTTP/1.1
 Host: shop.example-shop.test
 X-Research: tester-a
@@ -12,6 +13,7 @@ Content-Type: application/json
 {"order_id": 101, "owner": "tester-a", "items": ["mug"], "address": "[REDACTED]"}
 
 2. CONTROL (tester-a asks for an order that does not exist)
+Session used: tester-a (cookie redacted)
 GET /orders/999999 HTTP/1.1
 Host: shop.example-shop.test
 X-Research: tester-a
@@ -23,6 +25,7 @@ Content-Type: application/json
 {"error": "order not found"}
 
 3. VARIANT (same session, only the id changed to tester-b's order 102)
+Session used: tester-a (cookie redacted)
 GET /orders/102 HTTP/1.1
 Host: shop.example-shop.test
 X-Research: tester-a
@@ -34,6 +37,7 @@ Content-Type: application/json
 {"order_id": 102, "owner": "tester-b", "items": ["notebook"], "address": "[REDACTED]"}
 
 4. READ-BACK (tester-b reads tester-b's own order 102)
+Session used: tester-b (cookie redacted)
 GET /orders/102 HTTP/1.1
 Host: shop.example-shop.test
 X-Research: tester-a
