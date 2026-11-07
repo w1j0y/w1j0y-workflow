@@ -15,6 +15,20 @@ import scope_check  # noqa: E402
 SCOPE = h.load_json(os.path.join(h.GOOD, "scope_confirmed.json"))
 
 
+class ConfirmTests(unittest.TestCase):
+    def test_confirm_changes_exactly_one_line(self):
+        root = h.make_root()
+        self.addCleanup(h.cleanup, root)
+        dst = h.put_scope(root, os.path.join(h.BAD, "scope_unconfirmed.json"))
+        before = h.read_text(dst).splitlines()
+        r = h.run("scope_check.py", ["confirm", "--target", h.TARGET, "--root", root], stdin="y\n")
+        self.assertEqual(r.returncode, 0, r.stderr)
+        after = h.read_text(dst).splitlines()
+        self.assertEqual(len(before), len(after))
+        self.assertEqual([i for i, (a, b) in enumerate(zip(before, after)) if a != b].__len__(), 1)
+        self.assertTrue(h.load_json(dst)["rules"]["confirmed_by_human"])
+
+
 class ScopeLibraryTests(unittest.TestCase):
     def test_in_scope(self):
         for host in ("shop.example-shop.test", "api.example-shop.test", "example-shop.test",

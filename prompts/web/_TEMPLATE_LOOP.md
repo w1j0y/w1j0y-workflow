@@ -14,7 +14,7 @@ The loop does no phase work. It starts subagents, reads one line, runs gates.
 [A numbered list with the full repo-relative path of every phase file. Never a placeholder.]
 
 ## Before the loop
-[Entry gate command; load tool sets; resolve the target token; choose the start phase]
+[Entry gate command (a refusal stops the run; a WARN about uncommitted changes does not, because the human's confirm command changes the scope file on purpose); load tool sets; resolve the target token; choose the start phase]
 
 ## For each phase P in order
 [Snapshot; dispatch one fresh subagent with the seed preamble and five lines; read only the ROUTING line; run the check; repair on fail; validation on a finding]

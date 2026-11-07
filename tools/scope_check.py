@@ -173,7 +173,8 @@ def cmd_confirm(root, target):
         print("scope file not found: targets/%s/scope.json" % target, file=sys.stderr)
         return 2
     with open(path, encoding="utf-8") as f:
-        scope = json.load(f)
+        text = f.read()
+    scope = json.loads(text)
     rules = scope.get("rules")
     if not isinstance(rules, dict):
         print("scope has no rules block", file=sys.stderr)
@@ -192,9 +193,14 @@ def cmd_confirm(root, target):
         print("not confirmed; nothing changed")
         return 1
     rules["confirmed_by_human"] = True
+    # Flip the one value in place so the file keeps its layout and the change shows as one line in git.
+    flipped, n = re.subn(r'("confirmed_by_human"\s*:\s*)false', r"\1true", text, count=1)
+    if n == 1 and json.loads(flipped).get("rules", {}).get("confirmed_by_human") is True:
+        out = flipped
+    else:
+        out = json.dumps(scope, indent=2) + "\n"
     with open(path, "w", encoding="utf-8") as f:
-        json.dump(scope, f, indent=2)
-        f.write("\n")
+        f.write(out)
     print("confirmed_by_human set to true in targets/%s/scope.json" % target)
     return 0
 

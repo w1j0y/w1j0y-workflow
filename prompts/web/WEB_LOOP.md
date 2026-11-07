@@ -21,7 +21,7 @@ Shared rules: `prompts/reference/routing_and_handoff.md`, `prompts/reference/evi
 
 ## Before the loop
 
-1. Run `python3 tools/session_entry_gate.py start --target [target]`. If it refuses, print its message and stop; the human fixes it.
+1. Run `python3 tools/session_entry_gate.py start --target [target]`. If it refuses, print its message and stop; the human fixes it. If it passes with a WARN line about uncommitted changes, print the line and carry on: the human's confirm command leaves targets/[target]/scope.json changed on purpose, and that is not a reason to stop.
 2. Load the Burp and Chrome tool sets with the tool search step now, so subagents inherit a session where they exist. Setup is in `docs/TOOL_WIRING.md`.
 3. Resolve the target token once: it must match the folder name under `targets/`. Pass the same token to every subagent.
 4. Decide where to start: if `recon_output/[target]/coverage_ledger.md` has an OPEN handoff row, start at the lowest phase it names. If a ledger exists with none open, start at 02. If no ledger exists, start at 01.
