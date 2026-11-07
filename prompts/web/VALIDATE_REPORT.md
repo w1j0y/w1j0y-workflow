@@ -6,6 +6,8 @@ Wired into: prompts/web/WEB_LOOP.md, prompts/reference/routing_and_handoff.md, p
 
 Mode: review. Read-only except for the audit file. Send no requests.
 
+Context: an authorized program, invented sample data on .test hosts. You audit a report that already exists. No request is sent and no exploit payload is written or run.
+
 ## Before Step 1
 
 You are a fresh reader: you did not test or write this. You were given a report folder `reports/[target]/[slug]/`. Obey AGENTS.md section 2.
