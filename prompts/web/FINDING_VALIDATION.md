@@ -30,7 +30,7 @@ Always open `knowledge/INDEX.md` (never the knowledge folder) and open at most t
 4. Check the impact sentence: who can do what to whose data. Check the scope: the host is listed and no out-of-scope vulnerability class applies. Check the guidelines for a known duplicate shape.
 5. Open the false-positive file from the trigger table in `prompts/web/02_5-map-classes.md` and check the finding is not explained by it.
 6. Write the verdict: VALID_READY_TO_REPORT, VALID_NEEDS_MORE_WORK or NOT_VALID, with a reason of one or two sentences naming what is missing, if anything.
-7. Add one row to the Finding Validation table: id, finding_file (the repo-relative path), verdict, reason.
+7. Add one row to the Finding Validation table: id, finding_file (the repo-relative path), verdict, reason. If the human removed an earlier row for this finding, do not restore it: add yours with the next free id.
 
 ## What this phase writes
 

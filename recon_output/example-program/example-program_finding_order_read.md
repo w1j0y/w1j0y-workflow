@@ -8,6 +8,8 @@ Wired into: recon_output/example-program/coverage_ledger.md, reports/example-pro
 ## Class
 Authorization check on an order page: does the page confirm that the order belongs to the signed-in account?
 
+Host: shop.example-shop.test, https, port 443, covered by the scope rule *.example-shop.test in targets/example-program/scope.json.
+
 ## What was done
 Invented sample data on a .test host, two test accounts, four requests, all recorded in the evidence file.
 1. As tester-a, order 101 (tester-a's own) was requested: 200, owner tester-a (baseline).

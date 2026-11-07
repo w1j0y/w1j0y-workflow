@@ -139,7 +139,7 @@ Human-readable, rendered from `guidelines.json`. Start with `Target Guidelines -
 What: Generated summary of the organized scope for [target_name].
 Who writes: scripts/organize_scope_claude.sh through its agent.
 Who reads: You, before running tools/recon.py.
-Wired into: [raw filename] (one-way: input), tools/validate_scope.py (one-way: validator)
+Wired into: [raw_scope_file repo-relative path from Task parameters] (one-way: input), tools/validate_scope.py (one-way: validator)
 
 ## Files
 

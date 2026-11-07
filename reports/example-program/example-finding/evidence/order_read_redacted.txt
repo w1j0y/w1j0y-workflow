@@ -1,4 +1,4 @@
-Invented example, secrets already redacted. Four requests, sent with the header X-Research: tester-a at well below 60 requests per minute. The session cookie of every request is redacted.
+Host: shop.example-shop.test (https, port 443), in scope by the rule *.example-shop.test. Invented example, secrets already redacted. Four requests, sent with the header X-Research: tester-a at well below 60 requests per minute. The session cookie of every request is redacted.
 
 | # | Role | Session used | Request | Status | Owner in the response |
 |---|---|---|---|---|---|
