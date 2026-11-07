@@ -13,6 +13,10 @@ Wired into: README.md, STRUCTURE.md, docs/TOOLS_NEEDED.md, docs/TOOL_WIRING.md, 
 7. **First prompt.** Start `claude` in the folder and send: Read AGENTS.md and STRUCTURE.md, then tell me in ten lines what this repo does and what you would refuse to do. Do not change any file.
 8. **Read the map.** Open `STRUCTURE.md` and follow the episodes in order. Each names the files it builds and its description holds the prompts to copy.
 
+## If a reply is stopped
+
+Security text can make a model provider's safety systems stop a reply. You may see a message that the response was stopped, or an answer that only asks what to do next. This repo cannot change that. Send the prompt again; if it keeps happening, add one sentence saying that this is the invented practice program whose hosts end in .test. Nothing from a stopped reply counts as done: look at the files before you go on.
+
 ## Later, when you reach live testing
 
 - Install the external tools listed in `docs/TOOLS_NEEDED.md`.
