@@ -39,6 +39,8 @@ The ledger (Surfaces rows, one Phase handoff row), the target notes (append only
 
 `python3 tools/ledger_gate.py check --target [target] --phase 01`. Rows you changed must have the columns the schema requires for phase 01, and a status from the schema vocabulary. If a field truly does not apply, write `N/A - [reason]`.
 
+The orchestrator runs this check after you finish, and a passing check deletes the snapshot, so do not run `check` yourself; the orchestrator's run would then have nothing to compare with. Before you end, reread every row you changed against the required columns in the schema.
+
 ## Refusals
 
 Stop and use the BLOCKED line if: the scope file is missing or its rules are unconfirmed, a host is not listed, a step would change state without approval, or a hook denies a call and you cannot change the call to fit the scope. Do not route around a hook.

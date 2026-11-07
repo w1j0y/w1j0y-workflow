@@ -46,6 +46,8 @@ The ledger (Surfaces planning rows, one handoff row) and target notes (append on
 
 `python3 tools/ledger_gate.py check --target [target] --phase 02.5`. Required columns for 02.5 are in the schema. If a field does not apply, write `N/A - [reason]`.
 
+The orchestrator runs this check after you finish, and a passing check deletes the snapshot, so do not run `check` yourself; the orchestrator's run would then have nothing to compare with. Before you end, reread every row you changed against the required columns in the schema.
+
 ## Refusals
 
 Stop with BLOCKED if the scope file is missing or its rules are unconfirmed. Do not plan a request to a host that is not listed.

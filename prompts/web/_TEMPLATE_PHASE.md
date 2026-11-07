@@ -32,6 +32,7 @@ python3 tools/ledger_gate.py packet --target [target] --phase [P]
 
 ## The gate it must pass
 python3 tools/ledger_gate.py check --target [target] --phase [P]
+[Say that the orchestrator runs it after the phase, that a passing check deletes the snapshot, and that the phase must not run check itself]
 
 ## Refusals
 [When to stop]
