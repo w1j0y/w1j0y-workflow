@@ -21,7 +21,7 @@ Object reference: the server does not check that an order belongs to the caller.
 - Delta: tester-a received tester-b's order. The read-back from tester-b shows the same items.
 
 ## Impact
-tester-a can read tester-b's order details (items and address) by changing the id in /orders/[id]; any buyer could read any other buyer's orders by iterating ids.
+In this record, tester-a received tester-b's order details (items and address) when the id in /orders/[id] was changed. Only the two test accounts were used.
 
 ## Evidence
 reports/example-program/example-finding/evidence/order_read_redacted.txt

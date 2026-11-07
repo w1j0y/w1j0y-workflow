@@ -19,7 +19,7 @@ GET /orders/[id] on shop.example-shop.test returns another buyer's order to a lo
 Requests were sent with the header X-Research: tester-a at well below 60 requests per minute.
 
 ## Impact
-tester-a can read tester-b's order 102 (owner, items, address) by changing the id in GET /orders/[id]. Order ids 101 and 102 are sequential, which suggests other orders may be reachable the same way (not tested).
+tester-a can read tester-b's order 102 (owner, items, address) by changing the id in GET /orders/[id]. Only the two test accounts were used.
 
 ## Evidence
 reports/example-program/example-finding/evidence/order_read_redacted.txt (redacted; each request says which account's session it used)
