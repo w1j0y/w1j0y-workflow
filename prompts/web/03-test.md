@@ -29,7 +29,7 @@ Always open `knowledge/INDEX.md` (never the knowledge folder) and open at most t
 5. Before you set a status, open the false-positive file from the trigger table. Check the delta is not a catch-all page, a cached response or a shared object.
 6. Apply the confirmation bar in `prompts/reference/evidence_rules.md`. Statuses: confirmed (bar met), rejected (the application answered and the protection held), blocked (stopped before an answer), needs-depth (a clear signal needs more work), candidate (odd, not proven), no-signal.
 7. Save evidence under the target's evidence folder, run `python3 tools/redact.py` over any text before saving, and put the path in the evidence column.
-8. If the status is confirmed, create `recon_output/[target]/[target]_finding_[slug].md` with: the class, the steps to repeat, the baseline, control, variant and delta, the impact in one sentence with the two accounts named, and the evidence paths. Check duplicates first.
+8. If the status is confirmed, create `recon_output/[target]/[target]_finding_[slug].md` with: the class, what was done step by step (so someone else can repeat it), the baseline, control, variant and delta, the impact in one sentence with the two accounts named, and the evidence paths. Check duplicates first.
 9. Before leaving a confirmed row: write the anti-pattern check (is this the known false-positive shape?), the complexity (how many steps) and the impact (who can do what to whose data).
 10. Set the consumed 02.5 to 03 handoff row to CONSUMED. Write an OPEN row (to 02) for any surface that needs more characterizing.
 
