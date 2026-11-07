@@ -16,6 +16,9 @@ The loop does no phase work. It starts subagents, reads one line, runs gates.
 ## Before the loop
 [Entry gate command (a refusal stops the run; a WARN about uncommitted changes does not, because the human's confirm command changes the scope file on purpose); load tool sets; resolve the target token; choose the start phase]
 
+## Practice run
+[When every in-scope host ends in .test: send no request, phases work from saved files only, steps that need Burp or Chrome are recorded as blocked, and one line saying so is added to every subagent prompt]
+
 ## For each phase P in order
 [Snapshot; dispatch one fresh subagent with the seed preamble and five lines; read only the ROUTING line; run the check; repair on fail; validation on a finding]
 

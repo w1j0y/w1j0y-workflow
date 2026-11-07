@@ -26,6 +26,10 @@ Shared rules: `prompts/reference/routing_and_handoff.md`, `prompts/reference/evi
 3. Resolve the target token once: it must match the folder name under `targets/`. Pass the same token to every subagent.
 4. Decide where to start: if `recon_output/[target]/coverage_ledger.md` has an OPEN handoff row, start at the lowest phase it names. If a ledger exists with none open, start at 02. If no ledger exists, start at 01.
 
+## Practice run
+
+If every in-scope host in the target's scope file ends in .test, this is a practice run on the invented example. Hosts ending in .test are reserved and never resolve on the public internet. Send no request to anything. Phases work from saved files only: the newest run folder under recon_output/[target]/, the target notes and the ledger. Burp and Chrome are not connected in a practice run, so a step that needs them is recorded as blocked with the reason "no live tool in a practice run", and nobody writes an observation that no file shows. Add one line to every subagent prompt: "Practice run: send no request, work from saved files only, mark steps that need Burp or Chrome as blocked."
+
 ## For each phase P in order
 
 1. Snapshot: `python3 tools/ledger_gate.py snapshot --target [target] --phase P`. For phase 01 with no ledger this writes an empty snapshot, which is how the first run gets past the missing ledger.
