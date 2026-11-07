@@ -23,7 +23,7 @@ Setup facts below were read from the vendors' documentation and may have changed
 
 ## Setup: Chrome
 
-1. Google Chrome or Edge with the "Claude in Chrome" extension from the Chrome Web Store (id `fcoeoabgfenejglbffodgkkbkcdhcgfn`, minimum version 1.0.36 when this was written; re-check).
+1. Google Chrome or Edge (the Claude Code page lists WSL as not supported) with the "Claude in Chrome" extension from the Chrome Web Store (id `fcoeoabgfenejglbffodgkkbkcdhcgfn`, minimum version 1.0.36 when this was written; re-check).
 2. A direct paid Claude plan with `/login` (API key and setup-token logins keep it off; not available through some cloud providers). Re-check the plan list in the docs.
 3. Start with `claude --chrome`, or use `/chrome` and choose enabled by default. The extension must be signed in to the same account and organization. A project's settings cannot enable it.
 4. Use a separate browser profile that holds only test accounts. Set the extension's site permissions to the in-scope hosts only. Keep financial, medical, legal and work accounts out of that profile. Prompt injection from page content is the named main risk.
