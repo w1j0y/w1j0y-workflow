@@ -12,7 +12,7 @@ import helpers as h
 sys.path.insert(0, h.TOOLS)
 import scope_check  # noqa: E402
 
-SCOPE = json.load(open(os.path.join(h.GOOD, "scope_confirmed.json")))
+SCOPE = h.load_json(os.path.join(h.GOOD, "scope_confirmed.json"))
 
 
 class ScopeLibraryTests(unittest.TestCase):
@@ -70,11 +70,11 @@ class ScopeCliTests(unittest.TestCase):
         args = ["confirm", "--target", h.TARGET, "--root", self.root]
         r = h.run("scope_check.py", args, stdin="n\n")
         self.assertEqual(r.returncode, 1)
-        self.assertFalse(json.load(open(dst))["rules"]["confirmed_by_human"])
+        self.assertFalse(h.load_json(dst)["rules"]["confirmed_by_human"])
         r = h.run("scope_check.py", args, stdin="y\n")
         self.assertEqual(r.returncode, 0, r.stderr)
         self.assertIn("No more than 60 requests per minute.", r.stdout)
-        self.assertTrue(json.load(open(dst))["rules"]["confirmed_by_human"])
+        self.assertTrue(h.load_json(dst)["rules"]["confirmed_by_human"])
 
 
 class EntryGateTests(unittest.TestCase):
@@ -89,7 +89,7 @@ class EntryGateTests(unittest.TestCase):
         r = h.entry_start(self.root, os.path.join(h.GOOD, "scope_confirmed.json"))
         self.assertEqual(r.returncode, 0, r.stderr)
         self.assertIn("NOTE: automation is limited", r.stdout)
-        active = json.load(open(os.path.join(self.root, ".state", "active_target.json")))
+        active = h.load_json(os.path.join(self.root, ".state", "active_target.json"))
         self.assertEqual(active["target"], h.TARGET)
         self.assertEqual(active["header"], {"name": "X-Research-Id", "value": "tester-a"})
         self.assertEqual(active["rate"], {"value": 60, "unit": "per_minute"})
@@ -121,20 +121,20 @@ class EntryGateTests(unittest.TestCase):
         self.assertIn("ENTRY GATE FAIL (1 problem(s))", r.stderr)
 
     def test_rule_missing_is_refused(self):
-        d = json.load(open(os.path.join(h.GOOD, "scope_confirmed.json")))
+        d = h.load_json(os.path.join(h.GOOD, "scope_confirmed.json"))
         del d["rules"]["ai_use"]
         p = os.path.join(self.root, "s.json")
-        json.dump(d, open(p, "w"))
+        h.write_text(p, json.dumps(d))
         r = h.entry_start(self.root, p)
         self.assertEqual(r.returncode, 3)
         self.assertIn("ai_use", r.stderr)
 
     def test_fixture_quote_is_not_in_raw_text(self):
-        d = json.load(open(os.path.join(h.BAD, "scope_quote_not_in_raw.json")))
-        raw = open(os.path.join(h.BAD, "scope_quote_not_in_raw_raw.txt")).read()
+        d = h.load_json(os.path.join(h.BAD, "scope_quote_not_in_raw.json"))
+        raw = h.read_text(os.path.join(h.BAD, "scope_quote_not_in_raw_raw.txt"))
         self.assertNotIn(d["rules"]["rate_limit"]["source_text"], raw)
-        good = json.load(open(os.path.join(h.GOOD, "scope_confirmed.json")))
-        self.assertIn(good["rules"]["rate_limit"]["source_text"], open(os.path.join(h.GOOD, "scope_raw.txt")).read())
+        good = h.load_json(os.path.join(h.GOOD, "scope_confirmed.json"))
+        self.assertIn(good["rules"]["rate_limit"]["source_text"], h.read_text(os.path.join(h.GOOD, "scope_raw.txt")))
 
 
 if __name__ == "__main__":

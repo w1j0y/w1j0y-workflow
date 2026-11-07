@@ -55,17 +55,31 @@ def put_ledger(root, src):
 def edit_schema(root, fn):
     """Parse the fenced json block of the root's schema, apply fn, write it back."""
     p = os.path.join(root, "prompts", "reference", "ledger_schema.md")
-    text = open(p, encoding="utf-8").read()
+    text = read_text(p)
     m = re.search(r"(```json\s*\n)(.*?)(\n```)", text, re.S)
     data = json.loads(m.group(2))
     fn(data)
     text = text[:m.start(2)] + json.dumps(data, indent=2) + text[m.end(2):]
-    open(p, "w", encoding="utf-8").write(text)
+    write_text(p, text)
 
 
 def entry_start(root, scope_src):
     put_scope(root, scope_src)
     return run("session_entry_gate.py", ["start", "--target", TARGET, "--root", root])
+
+
+def read_text(path):
+    with open(path, encoding="utf-8") as f:
+        return f.read()
+
+
+def write_text(path, text):
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(text)
+
+
+def load_json(path):
+    return json.loads(read_text(path))
 
 
 def cleanup(root):

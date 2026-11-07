@@ -22,7 +22,7 @@ class HookTests(unittest.TestCase):
         self.assertEqual(r.returncode, 0, r.stderr)
 
     def hook(self, path, stdin=None, env=None, root=None):
-        data = open(path).read() if stdin is None else stdin
+        data = h.read_text(path) if stdin is None else stdin
         return h.run("mcp_scope_hook.py", ["--root", root or self.root], stdin=data, env=env)
 
     def test_good_inputs_allowed(self):
@@ -35,12 +35,12 @@ class HookTests(unittest.TestCase):
     def test_screenshot_after_navigate_allowed(self):
         self.assertEqual(self.hook(fx("good", "chrome_navigate_ok.json")).returncode, 0)
         self.assertEqual(self.hook(fx("good", "chrome_screenshot_ok.json")).returncode, 0)
-        tabs = json.load(open(os.path.join(self.root, ".state", "tabs.json")))
+        tabs = h.load_json(os.path.join(self.root, ".state", "tabs.json"))
         self.assertIn("7", tabs)
 
     def test_click_after_navigate_asks(self):
         self.hook(fx("good", "chrome_navigate_ok.json"))
-        p = json.load(open(fx("good", "chrome_screenshot_ok.json")))
+        p = h.load_json(fx("good", "chrome_screenshot_ok.json"))
         p["tool_input"]["action"] = "left_click"
         r = self.hook(None, stdin=json.dumps(p))
         self.assertEqual(r.returncode, 0)
@@ -100,7 +100,7 @@ class HookTests(unittest.TestCase):
 
     def test_allowed_send_is_recorded(self):
         self.assertEqual(self.hook(fx("good", "burp_send_ok.json")).returncode, 0)
-        lines = open(os.path.join(self.root, ".state", "requests.jsonl")).read().splitlines()
+        lines = h.read_text(os.path.join(self.root, ".state", "requests.jsonl")).splitlines()
         self.assertEqual(len(lines), 1)
 
     def test_source_pin(self):
@@ -115,9 +115,9 @@ class HookTests(unittest.TestCase):
         self.assertEqual(r.returncode, 0)
         p = os.path.join(self.root, ".state", "hook_samples.jsonl")
         self.assertTrue(os.path.isfile(p))
-        self.assertEqual(len(open(p).read().splitlines()), 1)
+        self.assertEqual(len(h.read_text(p).splitlines()), 1)
         r = self.hook(fx("good", "burp_send_ok.json"))
-        self.assertEqual(len(open(p).read().splitlines()), 1)
+        self.assertEqual(len(h.read_text(p).splitlines()), 1)
 
 
 if __name__ == "__main__":

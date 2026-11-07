@@ -83,9 +83,9 @@ class LedgerGateTests(unittest.TestCase):
         self.assertEqual(gate(self.root, "check").returncode, 0)
         self.assertEqual(gate(self.root, "snapshot", "02").returncode, 0)
         p = os.path.join(self.root, "recon_output", h.TARGET, "coverage_ledger.md")
-        text = open(p).read().replace("| s2 | GET /api/items/102 | object-reference | no-signal |",
+        text = h.read_text(p).replace("| s2 | GET /api/items/102 | object-reference | no-signal |",
                                       "| s2 | GET /api/items/102 | object-reference |  |")
-        open(p, "w").write(text)
+        h.write_text(p, text)
         r = gate(self.root, "check", "02")
         self.assertEqual(r.returncode, 3)
         self.assertIn("row s2", r.stderr)
@@ -117,8 +117,8 @@ class LedgerGateTests(unittest.TestCase):
         self.assertNotIn("| s2 |", r.stdout)
         p = os.path.join(self.root, "recon_output", h.TARGET, "coverage_ledger.md")
         rows = "\n".join("| x%d | GET /a/%d | object-reference | untested |  |  |" % (i, i) for i in range(70))
-        text = open(p).read().replace("## Phase handoff", rows + "\n\n## Phase handoff", 1)
-        open(p, "w").write(text)
+        text = h.read_text(p).replace("## Phase handoff", rows + "\n\n## Phase handoff", 1)
+        h.write_text(p, text)
         r = gate(self.root, "packet", "02")
         self.assertIn("61 of 72 open row(s), cap 60", r.stdout)
         shown = [ln for ln in r.stdout.splitlines() if ln.startswith("| x") or ln.startswith("| s1")]
@@ -175,10 +175,10 @@ class SchemaDrivesGateTests(unittest.TestCase):
         return gate(root, "check")
 
     def test_added_status_is_accepted(self):
-        text = open(os.path.join(h.GOOD, "ledger_complete.md")).read().replace("| no-signal |", "| accepted |")
+        text = h.read_text(os.path.join(h.GOOD, "ledger_complete.md")).replace("| no-signal |", "| accepted |")
         tmp = os.path.join(h.make_root(), "l.md")
         self.addCleanup(h.cleanup, os.path.dirname(tmp))
-        open(tmp, "w").write(text)
+        h.write_text(tmp, text)
         root = h.make_root()
         self.addCleanup(h.cleanup, root)
         self.assertEqual(self.run_with(root, tmp).returncode, 3)
@@ -199,9 +199,9 @@ class SchemaDrivesGateTests(unittest.TestCase):
         root = h.make_root()
         self.addCleanup(h.cleanup, root)
         h.edit_schema(root, lambda d: d["blocks"]["Surfaces"]["required_by_phase"]["01"].append("next"))
-        text = open(os.path.join(h.GOOD, "ledger_complete.md")).read().replace("| validate |", "|  |")
+        text = h.read_text(os.path.join(h.GOOD, "ledger_complete.md")).replace("| validate |", "|  |")
         tmp = os.path.join(root, "l.md")
-        open(tmp, "w").write(text)
+        h.write_text(tmp, text)
         r = self.run_with(root, tmp)
         self.assertEqual(r.returncode, 3)
         self.assertIn("column 'next' is blank", r.stderr)

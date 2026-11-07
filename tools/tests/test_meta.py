@@ -50,8 +50,8 @@ class FlipGoodToBadTests(unittest.TestCase):
                 root = h.make_root()
                 self.addCleanup(h.cleanup, root)
                 self.assertEqual(h.entry_start(root, os.path.join(h.GOOD, "scope_confirmed.json")).returncode, 0)
-                g = h.run("mcp_scope_hook.py", ["--root", root], stdin=open(os.path.join(h.GOOD, "hook", good)).read())
-                b = h.run("mcp_scope_hook.py", ["--root", root], stdin=open(os.path.join(h.BAD, "hook", bad)).read())
+                g = h.run("mcp_scope_hook.py", ["--root", root], stdin=h.read_text(os.path.join(h.GOOD, "hook", good)))
+                b = h.run("mcp_scope_hook.py", ["--root", root], stdin=h.read_text(os.path.join(h.BAD, "hook", bad)))
                 self.assertEqual(g.returncode, 0, g.stderr)
                 self.assertEqual(b.returncode, 2, b.stdout)
 
@@ -61,8 +61,8 @@ class FlipGoodToBadTests(unittest.TestCase):
         blob = ""
         for fn in os.listdir(here):
             if fn.startswith("test_") and fn.endswith(".py") and fn != "test_meta.py":
-                blob += open(os.path.join(here, fn)).read()
-        blob += open(os.path.join(here, "test_meta.py")).read()
+                blob += h.read_text(os.path.join(here, fn))
+        blob += h.read_text(os.path.join(here, "test_meta.py"))
         for dp, _, fns in os.walk(h.BAD):
             for fn in fns:
                 self.assertIn(fn, blob, "bad fixture %s is not referenced by any test" % fn)
