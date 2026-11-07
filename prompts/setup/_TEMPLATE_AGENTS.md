@@ -18,6 +18,8 @@ Sections, in order. Each rule gets a one-line reason. No history, no incident na
 10. Meta files: never load underscore paths as content.
 11. Where things live: point at STRUCTURE.md.
 
+Sections 12 and up are specific to this repo (the scope decision line, the ledger, phases and routing, findings, refusals, the tool list, folder rules, stop conditions). Other files point at them by number, so a regenerated file carries them over from the current AGENTS.md unchanged.
+
 Harness note to include, without version numbers: current versions of Claude Code read AGENTS.md natively; otherwise add a CLAUDE.md whose first line imports it.
 
 ## Wire it in
