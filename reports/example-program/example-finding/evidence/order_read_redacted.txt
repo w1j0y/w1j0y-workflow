@@ -1,3 +1,28 @@
+Invented example, secrets already redacted. Four requests, sent with the header X-Research: tester-a at well below 60 requests per minute.
+
+1. BASELINE (tester-a reads tester-a's own order 101)
+GET /orders/101 HTTP/1.1
+Host: shop.example-shop.test
+X-Research: tester-a
+Cookie: session=[REDACTED]
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{"order_id": 101, "owner": "tester-a", "items": ["mug"], "address": "[REDACTED]"}
+
+2. CONTROL (tester-a asks for an order that does not exist)
+GET /orders/999999 HTTP/1.1
+Host: shop.example-shop.test
+X-Research: tester-a
+Cookie: session=[REDACTED]
+
+HTTP/1.1 404 Not Found
+Content-Type: application/json
+
+{"error": "order not found"}
+
+3. VARIANT (same session, only the id changed to tester-b's order 102)
 GET /orders/102 HTTP/1.1
 Host: shop.example-shop.test
 X-Research: tester-a
@@ -7,3 +32,17 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {"order_id": 102, "owner": "tester-b", "items": ["notebook"], "address": "[REDACTED]"}
+
+4. READ-BACK (tester-b reads tester-b's own order 102)
+GET /orders/102 HTTP/1.1
+Host: shop.example-shop.test
+X-Research: tester-a
+Cookie: session=[REDACTED]
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{"order_id": 102, "owner": "tester-b", "items": ["notebook"], "address": "[REDACTED]"}
+
+DELTA
+The control returns 404, so the surface can say no. The variant returns 200 with owner tester-b to a session that belongs to tester-a. The read-back from tester-b shows the same items, so the 200 is real data and not a catch-all page.
