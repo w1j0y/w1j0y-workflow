@@ -26,7 +26,7 @@ AI_USE = ("allowed", "disclosure_required", "restricted", "prohibited", "unspeci
 UNITS = ("per_second", "per_minute", "per_hour")
 
 
-def check_rules(scope, problems, notes):
+def check_rules(scope, problems, notes, target="T"):
     rules = scope.get("rules")
     if not isinstance(rules, dict):
         problems.append("scope has no rules block (automation, ai_use, rate_limit, identification_header)")
@@ -43,7 +43,7 @@ def check_rules(scope, problems, notes):
     if not isinstance(ih, dict) or not (ih.get("status") == "unspecified" or (ih.get("name") and ih.get("value"))):
         problems.append("rule identification_header needs a name and value or status unspecified")
     if rules.get("confirmed_by_human") is not True:
-        problems.append("rules are not confirmed by a human (run: python3 tools/scope_check.py confirm --target T)")
+        problems.append("rules are not confirmed by a human (run: python3 tools/scope_check.py confirm --target %s)" % target)
     auto = (rules.get("automation") or {}).get("status")
     if auto == "prohibited":
         problems.append("program prohibits automation; this workflow is automated")
@@ -83,7 +83,7 @@ def cmd_start(root, target):
         except ValueError as e:
             problems.append("scope file is not valid JSON: %s" % e)
     if isinstance(scope, dict):
-        check_rules(scope, problems, notes)
+        check_rules(scope, problems, notes, target)
         if scope_check.header_from(scope) is None:
             problems.append("no identification header in scope (rules.identification_header or required_header)")
         active = scope_check.build_active(scope, rel)

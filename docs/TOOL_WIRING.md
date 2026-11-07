@@ -14,7 +14,7 @@ Setup facts below were read from the vendors' documentation and may have changed
 
 ## Setup: Burp
 
-1. Install the "MCP Server" extension from the BApp Store inside Burp (Community or Professional; some tools need Professional). Seen in the store listing: version 1.4.0, which will have moved.
+1. Install the "MCP Server" extension from the BApp Store inside Burp. The store listing says which Burp edition each tool needs (it names the Collaborator tools as Professional only); read it for your edition. Seen in the store listing: version 1.4.0, which will have moved.
 2. Enable it in the MCP tab. The default address is `http://127.0.0.1:9876` and the streamable HTTP path is `/mcp`. The older SSE endpoint is deprecated in Claude Code.
 3. Leave "Enable tools that can edit your config" off. Keep Burp's per-request approval on. Do not click "Always allow host": the dialog is a backstop, not permission.
 4. Connect Claude Code from the project folder, either with `claude mcp add --transport http burp http://127.0.0.1:9876/mcp --scope project`, or by copying `.mcp.json.example` to `.mcp.json`. The first form is derived from two docs pages; neither prints it verbatim (Verify live).
@@ -34,7 +34,7 @@ Setup facts below were read from the vendors' documentation and may have changed
 
 ## The hook
 
-`.claude/settings.json` registers `tools/mcp_scope_hook.py` as a PreToolUse hook with the broad matcher `mcp__.*`. The script decides; any server or tool it does not know is denied (fail closed), and any exception in the script exits with 2, which blocks.
+`.claude/settings.json` registers `tools/mcp_scope_hook.py` as a PreToolUse hook with the broad matcher `mcp__.*` and `"onFailure": "block"`, which the hooks documentation describes for recent versions: without it a hook that times out does not block the call. If your version does not know the setting, check the hooks page for your version. The script decides; any server or tool it does not know is denied (fail closed), and any exception in the script exits with 2, which blocks.
 
 Facts from the Claude Code docs: a hook receives the tool name, the arguments and, for MCP tools, the server name and source; exit code 2 blocks and shows stderr to the model; a hook deny holds even under bypass modes; permission rules cannot match MCP arguments, so argument checks need a hook; matchers are unanchored regular expressions; hooks also run in subagents and in `claude -p`. In an interactive session, settings-file hooks wait until you accept the workspace trust dialog. Flags that disable hooks exist; for a gate nobody can bypass use managed settings (this is an inference from the docs; Verify live).
 

@@ -2,7 +2,8 @@
 ## Surfaces
 | id | surface | class | status | evidence | next |
 |---|---|---|---|---|---|
-| s1 | GET /api/items/101 | object-reference |  | baseline 200 | validate |
+| s1 | GET /api/items/101 | object-reference |  | baseline 200, tester-b read tester-a record 101 | validate |
+| s2 | GET /api/items/102 | object-reference | no-signal | control and variant identical | none |
 
 ## Phase handoff
 | id | from | to | status | note |

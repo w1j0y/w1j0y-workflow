@@ -47,7 +47,7 @@ When a finding has a VALID_READY_TO_REPORT verdict, tell the human a report is o
 
 1. Write the cycle summary into the inbox folder (the inbox folder): date, target, phases run, rows changed, findings and verdicts, blocked items, next steps. No secrets.
 2. Run `python3 tools/ledger_to_inbox.py --target [target]`.
-3. Run `bash tools/closeout.sh [target] [slug]`. It refuses on a secret hit; do not work around it.
+3. Run `bash tools/closeout.sh --target [target]`. It refuses on a secret hit; do not work around it.
 4. Print `bash tools/digest_inbox.sh` for the human, and stop. Do not run the digest.
 
 ## What you must not do

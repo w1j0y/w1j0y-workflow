@@ -1,7 +1,6 @@
-Generator: a scope organizer launcher for another harness
-What: Prompt that creates scripts/organize_scope_[harness].sh from the template.
-Who writes: You, by sending the prompt below to Claude Code.
-Who reads: Claude Code, once.
+What: Prompt that creates scripts/organize_scope_[harness].sh, a scope organizer launcher for another harness, from the template.
+Who writes: The repo author.
+Who reads: You, pasting it into Claude Code.
 Wired into: scripts/_TEMPLATE_ORGANIZER.md, scripts/organize_scope_claude.sh
 
 Read scripts/_TEMPLATE_ORGANIZER.md and scripts/organize_scope_claude.sh.

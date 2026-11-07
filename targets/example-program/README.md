@@ -1,3 +1,4 @@
+# example-program Target Scope
 What: Generated summary of the organized scope for the example program.
 Who writes: scripts/organize_scope_claude.sh through its agent.
 Who reads: You, before running tools/recon.py.

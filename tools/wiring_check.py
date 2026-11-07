@@ -220,8 +220,9 @@ def run(root):
         if loop is None:
             add("phase", "prompts/web/WEB_LOOP.md", "missing but phase files exist")
         else:
+            loop_body = re.sub(r"^Wired into:.*$", "", loop, count=1, flags=re.M)  # the box lists every file back, so it does not count as naming
             for f in phases:
-                if f not in loop:
+                if f not in loop_body:
                     add("phase", f, "not named by exact path in prompts/web/WEB_LOOP.md")
 
     # tools

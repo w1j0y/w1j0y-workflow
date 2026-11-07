@@ -13,7 +13,7 @@ Exact install lines marked "verify" must be checked against each tool's own READ
 | gau | archive URLs | `go install github.com/lc/gau/v2/cmd/gau@latest` (verify) | none | threads capped at 5 |
 | jq, curl, git, python3 (3.10 or newer) | scripts | your system package manager | none | none |
 | claude (Claude Code) | digest, organizer, prompts | the official install steps in the Claude Code documentation (verify) | subscription login; no key is stored in this repo | none |
-| Burp Suite (Community or Professional) with the MCP Server extension | tool wiring | BApp Store inside Burp (verify; see `docs/TOOL_WIRING.md`) | none | the hook's request-rate window |
+| Burp Suite with the MCP Server extension (check the store listing for your edition) | tool wiring | BApp Store inside Burp (verify; see `docs/TOOL_WIRING.md`) | none | the hook's request-rate window |
 | Chrome with the Claude extension | tool wiring | Chrome Web Store (verify; see `docs/TOOL_WIRING.md`) | none | the hook's navigation rate window |
 
 `bash tools/install_tools.sh` prints the commands for the Go tools and checks what is present; it installs into a local tools/bin only when given its run flag, edits no shell profile and uses no sudo.

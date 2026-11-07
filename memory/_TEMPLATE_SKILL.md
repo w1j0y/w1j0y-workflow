@@ -23,7 +23,7 @@ Wired into: memory/playbook/INDEX.md, tools/playbook_apply.py
 - Status: [provisional, active, contested or retired]
 ~~~
 
-Delta file shape: a heading `## ADD [class file name]` with entries; `## REFINE PB-[CLASS]-[NNN]` with the changed fields; `## RETIRE PB-[CLASS]-[NNN]` with a Reason line.
+Delta file shape: a heading `## ADD [class file stem]` with entries (the stem is lowercase letters, digits and underscores, with no .md, for example object_reference); `## REFINE PB-[CLASS]-[NNN]` with the changed fields as `- Field: value` lines; `## RETIRE PB-[CLASS]-[NNN]` with a `- Reason: [why]` line. The apply tool refuses a stem that ends in .md and a RETIRE with no Reason line.
 
 ## Wire it in
 

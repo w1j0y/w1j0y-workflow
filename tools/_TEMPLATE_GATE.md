@@ -12,7 +12,7 @@ The generated file starts with the four-line box as comments, then a docstring w
 - snapshot --target T --phase P: record the ledger rows and finding files now. For phase 01 with no ledger, write an empty snapshot so the first cycle can start.
 - check --target T --phase P: compare to the snapshot. Rows new or changed since then must have the required columns for the phase non-blank, a status from the schema, and handoff rows a status. Every finding file new or changed since then needs a Finding Validation row naming it. Delete the snapshot on pass.
 - packet --target T --phase P: print only the open rows, capped at the schema's row cap.
-- submittable --target T --report-dir D: REPORT.md exists, the ledger holds a VALID_READY_TO_REPORT verdict for the finding, and when the active target's ai_use rule is disclosure_required the report holds a line starting with AI disclosure:.
+- submittable --target T --report-dir D: REPORT.md exists, the ledger holds a VALID_READY_TO_REPORT verdict for the finding, and the target's own scope file (targets/T/scope.json, never session state) is read for the ai_use rule: refuse when it is prohibited or restricted, and when it is disclosure_required the report must hold a line starting with AI disclosure:. A missing scope file is a refusal.
 - --root [dir] on every subcommand; default is the repo root.
 
 ## Contract

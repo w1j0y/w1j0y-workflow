@@ -130,14 +130,28 @@ class LedgerGateTests(unittest.TestCase):
         rd = os.path.join(self.root, "reports", h.TARGET, "example-finding")
         os.makedirs(rd)
         shutil.copy(os.path.join(h.BAD, "REPORT_missing_disclosure.md"), os.path.join(rd, "REPORT.md"))
+        # no scope file in this checkout: fail closed, never pass because nothing says disclosure is needed
         r = gate(self.root, "submittable", None, ["--report-dir", rd])
-        self.assertEqual(r.returncode, 0, r.stderr)
-        self.assertEqual(h.entry_start(self.root, os.path.join(h.GOOD, "scope_disclosure.json")).returncode, 0)
+        self.assertEqual(r.returncode, 3)
+        self.assertIn("scope file missing", r.stderr)
+        # the scope file alone is enough: the entry gate has not run, so there is no session state
+        h.put_scope(self.root, os.path.join(h.GOOD, "scope_disclosure.json"))
+        self.assertFalse(os.path.exists(os.path.join(self.root, ".state", "active_target.json")))
         r = gate(self.root, "submittable", None, ["--report-dir", rd])
         self.assertEqual(r.returncode, 3)
         self.assertIn("AI disclosure:", r.stderr)
         shutil.copy(os.path.join(h.GOOD, "REPORT_disclosure_ok.md"), os.path.join(rd, "REPORT.md"))
         self.assertEqual(gate(self.root, "submittable", None, ["--report-dir", rd]).returncode, 0)
+
+    def test_submittable_refuses_when_ai_use_is_prohibited(self):
+        h.put_ledger(self.root, os.path.join(h.GOOD, "ledger_complete.md"))
+        h.put_scope(self.root, os.path.join(h.BAD, "scope_ai_prohibited.json"))
+        rd = os.path.join(self.root, "reports", h.TARGET, "example-finding")
+        os.makedirs(rd)
+        shutil.copy(os.path.join(h.GOOD, "REPORT_disclosure_ok.md"), os.path.join(rd, "REPORT.md"))
+        r = gate(self.root, "submittable", None, ["--report-dir", rd])
+        self.assertEqual(r.returncode, 3)
+        self.assertIn("ai_use rule is", r.stderr)
 
     def test_submittable_needs_ready_verdict_and_report(self):
         h.put_ledger(self.root, os.path.join(h.BAD, "ledger_finding_no_verdict.md"))

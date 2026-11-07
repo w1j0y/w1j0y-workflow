@@ -20,6 +20,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lib import meta  # noqa: E402
+import scope_check  # noqa: E402
 
 SCHEMA_REL = os.path.join("prompts", "reference", "ledger_schema.md")
 TARGET_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
@@ -270,15 +271,28 @@ def cmd_submittable(root, target, report_dir, schema):
     rows = sections.get(fv_name, {"rows": []})["rows"]
     if not any(r.get("verdict", "").strip() == fv_block["ready_verdict"] for r in rows):
         problems.append("no Finding Validation row has verdict %s" % fv_block["ready_verdict"])
-    ap = os.path.join(root, ".state", "active_target.json")
-    if os.path.isfile(ap):
-        with open(ap, encoding="utf-8") as f:
-            active = json.load(f)
-        status = ((active.get("rules") or {}).get("ai_use") or {}).get("status")
-        if status == "disclosure_required":
-            with open(report, encoding="utf-8") as f:
-                if not any(ln.startswith("AI disclosure:") for ln in f.read().splitlines()):
-                    problems.append("program requires AI disclosure: REPORT.md has no line starting 'AI disclosure:'")
+    # The AI-use rule comes from the target's own scope file, never from session state, so a report
+    # cannot pass just because the entry gate has not run in this checkout.
+    sp = scope_check.scope_file(root, target)
+    if not os.path.isfile(sp):
+        problems.append("scope file missing: targets/%s/scope.json (cannot tell whether AI disclosure is required)" % target)
+    else:
+        try:
+            with open(sp, encoding="utf-8") as f:
+                scope = json.load(f)
+        except ValueError:
+            scope = None
+            problems.append("scope file is not valid JSON: targets/%s/scope.json" % target)
+        if isinstance(scope, dict):
+            status = ((scope.get("rules") or {}).get("ai_use") or {}).get("status")
+            if status in ("prohibited", "restricted"):
+                problems.append("program ai_use rule is %s: do not submit" % status)
+            elif status == "disclosure_required":
+                with open(report, encoding="utf-8") as f:
+                    if not any(ln.startswith("AI disclosure:") for ln in f.read().splitlines()):
+                        problems.append("program requires AI disclosure: REPORT.md has no line starting 'AI disclosure:'")
+            elif status not in ("allowed", "unspecified"):
+                problems.append("scope file has no ai_use rule status (allowed, disclosure_required, restricted, prohibited or unspecified)")
     if problems:
         print("GATE FAIL: submittable for target '%s' -- %d row(s) incomplete:" % (target, len(problems)), file=sys.stderr)
         for p in problems:

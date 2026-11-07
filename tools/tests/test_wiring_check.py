@@ -77,6 +77,9 @@ class WiringTests(unittest.TestCase):
             self.w("prompts/web/01-triage.md", "# Phase\nConsult `knowledge/INDEX.md` and `knowledge/idor.md`.\n")
         def break_phase_unnamed():
             self.sub("prompts/web/WEB_LOOP.md", "`prompts/web/01-triage.md`", "the triage file")
+        def break_phase_named_only_in_box():
+            self.sub("prompts/web/WEB_LOOP.md", "Wired into: ", "Wired into: prompts/web/01-triage.md, ")
+            self.sub("prompts/web/WEB_LOOP.md", "`prompts/web/01-triage.md`", "the triage file")
         def break_path_missing():
             self.sub("prompts/web/WEB_LOOP.md", "Run `tools/a.py`", "Run `tools/a.py` and `docs/nowhere.md`")
         def break_tool_missing():
@@ -99,7 +102,7 @@ class WiringTests(unittest.TestCase):
         def break_tool_unnamed():
             self.w("tools/b.py", "# What: x\n# Who writes: y\n# Who reads: z\n# Wired into: none: test\n")
         cases = [
-            (break_missing_box, "box"), (break_phase_unnamed, "phase"), (break_path_missing, "path-missing"),
+            (break_missing_box, "box"), (break_phase_unnamed, "phase"), (break_phase_named_only_in_box, "phase"), (break_path_missing, "path-missing"),
             (break_tool_missing, "tool-missing"), (break_one_way, "one-way"), (break_structure, "structure"),
             (break_structure_class, "structure"), (break_meta_leak, "meta-leak"), (break_index, "knowledge"),
             (break_unreachable, "knowledge"), (break_unreferenced, "unreferenced"), (break_tool_unnamed, "tool-unnamed"),
