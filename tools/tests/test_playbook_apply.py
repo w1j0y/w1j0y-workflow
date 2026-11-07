@@ -51,6 +51,12 @@ class PlaybookTests(unittest.TestCase):
         self.assertIn("PB-OBJECT_REFERENCE-003", index)
         self.assertIn("PB-SPA_CATCH_ALL-001", index)
 
+    def test_new_class_file_passes_the_one_way_wiring_rule(self):
+        # the apply tool cannot edit its own box, so a class file it makes must mark that link one-way
+        self.apply("## ADD race_conditions\n" + entry(1, cls="RACE_CONDITIONS"))
+        text = (self.root / "memory" / "playbook" / "race_conditions.md").read_text(encoding="utf-8")
+        self.assertIn("tools/playbook_apply.py (one-way", text)
+
     def test_add_creates_new_class_file(self):
         p = self.apply("## ADD race_conditions\n" + entry(1, cls="RACE_CONDITIONS"))
         self.assertEqual(p.returncode, 0, p.stderr)

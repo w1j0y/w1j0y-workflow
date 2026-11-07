@@ -47,7 +47,7 @@ FIELD_RE = re.compile(r"^- ([A-Za-z ]+): ?(.*)$")
 BOX = ("What: Curated, evidence-backed entries for the {stem} class.\n"
        "Who writes: tools/playbook_apply.py, from a delta the human approved.\n"
        "Who reads: the phase prompts, after they find this class in memory/playbook/INDEX.md.\n"
-       "Wired into: memory/playbook/INDEX.md, tools/playbook_apply.py\n")
+       "Wired into: memory/playbook/INDEX.md, tools/playbook_apply.py (one-way: the script that writes this file)\n")
 
 
 class Refuse(Exception):
