@@ -7,7 +7,7 @@ Wired into: README.md, STRUCTURE.md, docs/TOOLS_NEEDED.md, docs/TOOL_WIRING.md, 
 1. **A machine.** Use a Linux machine or a virtual machine you set up yourself. Install git, curl, jq and Python 3.10 or newer from your system package manager. Setting up the machine is not covered here.
 2. **Read the rules.** Open `ETHICS.md`. If you cannot agree to it, stop here.
 3. **Install Claude Code.** Use the install steps on its official documentation page, then run `claude --version` and see a version number. Log in with an account made for this work. Check the page for which plans include which features; this repo does not store keys.
-4. **Get the repo.** Run `git clone [repo link]` and change into the folder. For the series, keep this clone for reading and run every prompt in your own working copy: `git clone w1j0y-workflow my-workflow` (use the name of the folder you just cloned), then work inside `my-workflow`.
+4. **Get the repo.** Run `git clone https://github.com/w1j0y/w1j0y-workflow.git` and change into the folder. For the series, keep this clone for reading and run every prompt in your own working copy: `git clone w1j0y-workflow my-workflow` (use the name of the folder you just cloned), then work inside `my-workflow`.
 5. **Run the tests.** Run `bash tools/tests/run.sh`. All tests pass offline. This proves the gate, the scope checker and the hook work on your machine before any tool touches a network.
 6. **Run the wiring check.** Run `python3 tools/wiring_check.py`. It prints nothing but a pass line when every file is wired.
 7. **First prompt.** Start `claude` in the folder and send: Read AGENTS.md and STRUCTURE.md, then tell me in ten lines what this repo does and what you would refuse to do. Do not change any file.

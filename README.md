@@ -35,4 +35,4 @@ You can set up a Linux machine or VM and you know the basics of web assessments.
 
 Test only what you are authorized to test. Program rules (automation, AI use, rate limit, identification header) bind you and the agent; the tools read them from the scope file and refuse when they are missing or unconfirmed. The hook is a backstop and has limits that `docs/TOOL_WIRING.md` states plainly. Use test accounts and a separate browser profile.
 
-Repo link: [repo link]
+Repo link: https://github.com/w1j0y/w1j0y-workflow
